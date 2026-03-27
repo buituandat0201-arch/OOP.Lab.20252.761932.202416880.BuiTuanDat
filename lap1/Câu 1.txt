@@ -1,0 +1,5 @@
+Câu 1:
+Chọn Cancel sẽ hủy quá trình chạy, chương trình không được thực thi và có thể mất các thay đổi chưa lưu.
+
+Câu 2:
+Dùng JOptionPane để tùy chỉnh lựa chọn. Ví dụ JOptionPane.YES_NO_OPTION chỉ hiển thị 2 nút Yes/No.
