@@ -1,6 +1,3 @@
-
-
-
 import disc.DigitalVideoDisc;
 
 public class Cart {
@@ -9,18 +6,17 @@ public class Cart {
     private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
     private int qtyOrdered = 0;
 
-    // Thêm DVD
+    // Thêm 1 DVD
     public void addDigitalVideoDisc(DigitalVideoDisc disc) {
         if (qtyOrdered < MAX_NUMBERS_ORDERED) {
-            itemsOrdered[qtyOrdered] = disc;
-            qtyOrdered++;
+            itemsOrdered[qtyOrdered++] = disc;
             System.out.println("The disc \"" + disc.getTitle() + "\" has been added");
         } else {
-            System.out.println("The cart is almost full");
+            System.out.println("The cart is full");
         }
     }
 
-    // Thêm nhiều DVD (varargs - QUAN TRỌNG)
+    // Thêm nhiều DVD (varargs)
     public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
         for (DigitalVideoDisc dvd : dvds) {
             addDigitalVideoDisc(dvd);
@@ -29,28 +25,21 @@ public class Cart {
 
     // Xóa DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
-        boolean found = false;
-
         for (int i = 0; i < qtyOrdered; i++) {
-            if (itemsOrdered[i] == disc) {
-                found = true;
+            if (itemsOrdered[i].getTitle().equals(disc.getTitle())) {
 
-                // Dịch mảng
                 for (int j = i; j < qtyOrdered - 1; j++) {
                     itemsOrdered[j] = itemsOrdered[j + 1];
                 }
 
-                itemsOrdered[qtyOrdered - 1] = null;
-                qtyOrdered--;
+                itemsOrdered[--qtyOrdered] = null;
 
                 System.out.println("The disc \"" + disc.getTitle() + "\" has been removed");
-                break;
+                return;
             }
         }
 
-        if (!found) {
-            System.out.println("The disc was not found in the cart");
-        }
+        System.out.println("The disc was not found in the cart");
     }
 
     // Tính tổng tiền
@@ -63,5 +52,4 @@ public class Cart {
 
         return sum;
     }
-
 }
