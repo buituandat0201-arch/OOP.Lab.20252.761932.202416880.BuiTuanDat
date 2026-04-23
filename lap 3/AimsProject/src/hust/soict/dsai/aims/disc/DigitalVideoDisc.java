@@ -7,17 +7,24 @@ public class DigitalVideoDisc {
     private int length;
     private float cost;
 
+    private static int nbDigitalVideoDiscs = 0;
+    private int id;
+
     // Constructor rỗng
     public DigitalVideoDisc() {
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
     }
 
     // Constructor 1 tham số
     public DigitalVideoDisc(String title) {
+        this(); // gọi constructor rỗng
         this.title = title;
     }
 
     // Constructor 3 tham số
     public DigitalVideoDisc(String category, String title, float cost) {
+        this();
         this.category = category;
         this.title = title;
         this.cost = cost;
@@ -25,6 +32,7 @@ public class DigitalVideoDisc {
 
     // Constructor 4 tham số
     public DigitalVideoDisc(String director, String category, String title, float cost) {
+        this();
         this.director = director;
         this.category = category;
         this.title = title;
@@ -33,6 +41,7 @@ public class DigitalVideoDisc {
 
     // Constructor đầy đủ
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        this();
         this.title = title;
         this.category = category;
         this.director = director;
@@ -40,7 +49,7 @@ public class DigitalVideoDisc {
         this.cost = cost;
     }
 
-    // Getter (chỉ cần getter theo đề)
+    // Getter
     public String getTitle() {
         return title;
     }
@@ -60,8 +69,13 @@ public class DigitalVideoDisc {
     public float getCost() {
         return cost;
     }
-public void setTitle(String title) {
-    this.title = title;
-}
 
+    public int getId() {
+        return id;
+    }
+
+    // Setter
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
