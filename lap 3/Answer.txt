@@ -1,2 +1,0 @@
-Question:
-Không, Java không cho phép. Vì hai constructor đều có cùng kiểu tham số (String) nên trình biên dịch không thể phân biệt được. Để sử dụng nạp chồng constructor, cần phải khác nhau về số lượng tham số hoặc kiểu dữ liệu tham số.
