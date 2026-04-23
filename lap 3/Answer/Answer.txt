@@ -1,2 +1,13 @@
-Question:
-Không, Java không cho phép. Vì hai constructor đều có cùng kiểu tham số (String) nên trình biên dịch không thể phân biệt được. Để sử dụng nạp chồng constructor, cần phải khác nhau về số lượng tham số hoặc kiểu dữ liệu tham số.
+Java sử dụng cơ chế truyền tham trị (pass-by-value).
+
+Phương thức hoán đổi (swap method) không hoạt động vì các tham chiếu (references) cũng được truyền theo dạng tham trị.
+
+Phương thức changeTitle hoạt động được vì nó sửa đổi trạng thái của đối tượng (object state).
+
+Tham số biến đổi (Varargs) tốt hơn dùng mảng (array) vì nó linh hoạt hơn.
+
+String là bất biến (immutable) → xử lý chậm khi thực hiện nối chuỗi.
+
+StringBuilder thì có tốc độ xử lý nhanh hơn (khi thao tác với chuỗi).
+
+StringBuffer thì an toàn luồng (thread-safe).
