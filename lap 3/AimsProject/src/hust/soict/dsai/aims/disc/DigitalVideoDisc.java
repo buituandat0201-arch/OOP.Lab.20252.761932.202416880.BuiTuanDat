@@ -15,7 +15,7 @@ public class DigitalVideoDisc {
         nbDigitalVideoDiscs++;
         this.id = nbDigitalVideoDiscs;
     }
-
+    
     // Constructor 1 tham số
     public DigitalVideoDisc(String title) {
         this(); // gọi constructor rỗng

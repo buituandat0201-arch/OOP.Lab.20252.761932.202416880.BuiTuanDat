@@ -22,7 +22,23 @@ public class Cart {
             addDigitalVideoDisc(dvd);
         }
     }
+    public DigitalVideoDisc searchById(int id) {
+    for (int i = 0; i < qtyOrdered; i++) {
+        if (itemsOrdered[i].getId() == id) {
+            return itemsOrdered[i];
+        }
+    }
+    return null;
+}
 
+public DigitalVideoDisc searchByTitle(String title) {
+    for (int i = 0; i < qtyOrdered; i++) {
+        if (itemsOrdered[i].getTitle().equals(title)) {
+            return itemsOrdered[i];
+        }
+    }
+    return null;
+}
     // Xóa DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         for (int i = 0; i < qtyOrdered; i++) {
