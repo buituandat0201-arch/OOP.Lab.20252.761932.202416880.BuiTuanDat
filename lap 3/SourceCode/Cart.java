@@ -15,6 +15,13 @@ public class Cart {
         }
     }
 
+    // Thêm nhiều DVD (varargs - QUAN TRỌNG)
+    public void addDigitalVideoDisc(DigitalVideoDisc... dvds) {
+        for (DigitalVideoDisc dvd : dvds) {
+            addDigitalVideoDisc(dvd);
+        }
+    }
+
     // Xóa DVD
     public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
         boolean found = false;
@@ -51,4 +58,5 @@ public class Cart {
 
         return sum;
     }
+
 }
