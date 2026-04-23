@@ -68,4 +68,18 @@ public DigitalVideoDisc searchByTitle(String title) {
 
         return sum;
     }
+    public void print() {
+    System.out.println("***********************CART***********************");
+
+    for (int i = 0; i < qtyOrdered; i++) {
+        DigitalVideoDisc dvd = itemsOrdered[i];
+        System.out.println((i + 1) + ". DVD - " 
+            + dvd.getTitle() + " - " 
+            + dvd.getCategory() + " - " 
+            + dvd.getCost() + " $");
+    }
+
+    System.out.println("Total cost: " + totalCost() + " $");
+    System.out.println("***************************************************");
+}
 }
