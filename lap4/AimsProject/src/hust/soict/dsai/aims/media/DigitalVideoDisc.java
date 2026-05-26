@@ -1,4 +1,4 @@
-package disc;
+package hust.soict.dsai.aims.media;
 
 public class DigitalVideoDisc {
     private String title;

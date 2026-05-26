@@ -1,13 +1,41 @@
-Java sử dụng cơ chế truyền tham trị (pass-by-value).
+Câu 9 (Trang 7): Aggregation (Tập hợp / Chứa đựng)
+Câu hỏi: Which classes are aggregates of other classes? Checking all constructors of whole classes if they initialize for their parts? (Những lớp nào là tập hợp của các lớp khác? Kiểm tra các constructor của các lớp tổng thể xem chúng có khởi tạo cho các thành phần của chúng không?)
 
-Phương thức hoán đổi (swap method) không hoạt động vì các tham chiếu (references) cũng được truyền theo dạng tham trị.
+Trả lời:
 
-Phương thức changeTitle hoạt động được vì nó sửa đổi trạng thái của đối tượng (object state).
+Các lớp đóng vai trò là lớp tập hợp (aggregate) bao gồm: Cart (chứa danh sách các Media), Store (chứa danh sách các Media), và CompactDisc (chứa danh sách các Track). Lớp Book cũng có thể coi là aggregate của String (danh sách tác giả).
 
-Tham số biến đổi (Varargs) tốt hơn dùng mảng (array) vì nó linh hoạt hơn.
+Về constructor: Các lớp tổng thể (whole classes) như Cart, Store, CompactDisc, Book đều có khởi tạo các đối tượng thành phần (parts) của chúng. Cụ thể, khi khai báo các thuộc tính ArrayList, chúng được khởi tạo ngay lập tức (ví dụ: private ArrayList<Media> itemsOrdered = new ArrayList<Media>();) hoặc được khởi tạo bên trong constructor.
 
-String là bất biến (immutable) → xử lý chậm khi thực hiện nối chuỗi.
+Câu 10 (Trang 8): Ép kiểu trong hàm equals()
+Câu hỏi: If the passing object is not an instance of Media, what happens? (Nếu đối tượng truyền vào hàm equals() không phải là một instance của Media thì điều gì xảy ra?)
 
-StringBuilder thì có tốc độ xử lý nhanh hơn (khi thao tác với chuỗi).
+Trả lời: * Nếu trong hàm equals(Object obj), chúng ta ép kiểu (cast) tham số obj sang kiểu Media mà không kiểm tra trước bằng toán tử instanceof, chương trình sẽ ném ra lỗi runtime ClassCastException và bị dừng đột ngột.
 
-StringBuffer thì an toàn luồng (thread-safe).
+Để giải quyết, phương thức equals() chuẩn luôn phải có dòng kiểm tra: if (!(obj instanceof Media)) return false; trước khi ép kiểu.
+
+Câu 11 (Trang 8): Đa hình với phương thức toString()
+Câu hỏi: Iterate through the list and print out the information of the media by using toString() method. Observe what happens and explain in detail. (Duyệt qua danh sách, in thông tin media bằng toString. Quan sát và giải thích chi tiết hiện tượng).
+
+Trả lời:
+
+Hiện tượng: Dù danh sách được khai báo là List<Media>, nhưng khi gọi m.toString(), chương trình sẽ in ra đúng định dạng chuỗi của từng đối tượng cụ thể (Book, CompactDisc, hoặc DigitalVideoDisc) chứ không in ra phương thức của lớp cha Media.
+
+Giải thích: Đây là tính năng Đa hình lúc runtime (Dynamic Polymorphism / Late Binding) trong Java. Trình biên dịch (compiler) chỉ biết biến m thuộc kiểu Media, nhưng Máy ảo Java (JVM) khi chạy sẽ xác định được kiểu dữ liệu thực tế (actual type) của đối tượng được tạo ra trong bộ nhớ là gì (ví dụ đối tượng thực sự là Book). Từ đó, nó ưu tiên gọi phương thức toString() đã được ghi đè (override) ở lớp con tương ứng.
+
+Câu 12 (Trang 9): Comparable interface vs Comparator
+Câu hỏi 1: What class should implement the Comparable interface? (Lớp nào nên implement interface Comparable?)
+
+Trả lời: Lớp cha Media nên implement interface Comparable<Media>.
+
+Câu hỏi 2: In those classes, how should you implement the compareTo() method be to reflect the ordering that we want? (Trong các lớp đó, bạn nên implement phương thức compareTo() như thế nào để phản ánh thứ tự mong muốn?)
+
+Trả lời: Trong lớp Media, ghi đè hàm compareTo(Media other). Thuật toán: So sánh thuộc tính title trước bằng phương thức compareTo() của lớp String. Nếu title giống nhau (kết quả trả về 0), ta tiếp tục so sánh thuộc tính cost (thường là sắp xếp giảm dần hoặc tăng dần tùy theo "trật tự tự nhiên" được chọn mặc định).
+
+Câu hỏi 3: Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach? (Chúng ta có thể có 2 luật sắp xếp khác nhau nếu dùng Comparable không?)
+
+Trả lời: Không. Interface Comparable chỉ cho phép định nghĩa một trật tự tự nhiên duy nhất (natural ordering) thông qua phương thức compareTo(). Nếu muốn cung cấp nhiều cách sắp xếp linh hoạt khác nhau (vừa theo title-cost, vừa theo cost-title), bắt buộc phải tạo các lớp Comparator riêng biệt.
+
+Câu hỏi 4: Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this? (Giả sử DVD có luật xếp hạng khác: theo title, rồi độ dài giảm dần, rồi mới đến cost. Làm sao để sửa code cho phép điều này?)
+
+Trả lời: Ta sẽ vào lớp DigitalVideoDisc (hoặc Disc) và ghi đè (override) phương thức compareTo() đã được định nghĩa ở lớp cha Media. Trong hàm compareTo() của DigitalVideoDisc, ta cài đặt luật so sánh mới: Gọi super.compareTo() hoặc so sánh title trước; nếu bằng nhau thì so sánh length (giảm dần); nếu length vẫn bằng nhau thì mới tiến hành so sánh cost. Nhờ tính đa hình, khi một object là DVD tiến hành so sánh, nó sẽ tự động dùng luật riêng của nó.
