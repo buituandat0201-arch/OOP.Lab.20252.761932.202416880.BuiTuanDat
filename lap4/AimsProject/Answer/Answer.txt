@@ -38,4 +38,8 @@ Trả lời: Không. Interface Comparable chỉ cho phép định nghĩa một t
 
 Câu hỏi 4: Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this? (Giả sử DVD có luật xếp hạng khác: theo title, rồi độ dài giảm dần, rồi mới đến cost. Làm sao để sửa code cho phép điều này?)
 
+<<<<<<< HEAD
 Trả lời: Ta sẽ vào lớp DigitalVideoDisc (hoặc Disc) và ghi đè (override) phương thức compareTo() đã được định nghĩa ở lớp cha Media. Trong hàm compareTo() của DigitalVideoDisc, ta cài đặt luật so sánh mới: Gọi super.compareTo() hoặc so sánh title trước; nếu bằng nhau thì so sánh length (giảm dần); nếu length vẫn bằng nhau thì mới tiến hành so sánh cost. Nhờ tính đa hình, khi một object là DVD tiến hành so sánh, nó sẽ tự động dùng luật riêng của nó.
+=======
+Trả lời: Ta sẽ vào lớp DigitalVideoDisc (hoặc Disc) và ghi đè (override) phương thức compareTo() đã được định nghĩa ở lớp cha Media. Trong hàm compareTo() của DigitalVideoDisc, ta cài đặt luật so sánh mới: Gọi super.compareTo() hoặc so sánh title trước; nếu bằng nhau thì so sánh length (giảm dần); nếu length vẫn bằng nhau thì mới tiến hành so sánh cost. Nhờ tính đa hình, khi một object là DVD tiến hành so sánh, nó sẽ tự động dùng luật riêng của nó.
+>>>>>>> 61d400aa9251dc2bce2378cb1dd2fda1e36386b9
