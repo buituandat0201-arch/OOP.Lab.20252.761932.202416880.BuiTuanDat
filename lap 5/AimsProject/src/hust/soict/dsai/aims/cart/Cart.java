@@ -1,5 +1,22 @@
 import disc.DigitalVideoDisc;
+// Sửa đổi import sang thư viện JavaFX
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+// Bên trong class Cart, thay đổi kiểu dữ liệu của danh sách:
+private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList(); [cite: 1264]
+
+// Sửa lại kiểu trả về của hàm getter tương ứng:
+public ObservableList<Media> getItemsOrdered() { [cite: 1251]
+    return this.itemsOrdered;
+}
+// Bên trong class Cart, thay đổi kiểu dữ liệu của danh sách:
+private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList(); [cite: 1264]
+
+// Sửa lại kiểu trả về của hàm getter tương ứng:
+public ObservableList<Media> getItemsOrdered() { [cite: 1251]
+    return this.itemsOrdered;
+}
 public class Cart {
     public static final int MAX_NUMBERS_ORDERED = 20;
 

@@ -1,0 +1,22 @@
+
+1. Câu hỏi mục 1.3: Compare Swing and AWT elements (Trang 5) 
+
+Đề bài yêu cầu chỉ ra các điểm khác biệt cần lưu ý giữa bộ thư viện giao diện cũ (AWT) và mới (Swing):
+
+* 
+The top-level containers in Swing and AWT : Trong AWT, các container cấp cao nhất là `Frame`, `Dialog`, `Applet`. Trong Swing, chúng tương ứng là `JFrame`, `JDialog`, `JApplet` . Điểm khác biệt cốt lõi là các thành phần của Swing là lightweight (linh hoạt/gọn nhẹ) nên không được phép thêm (`add`) trực tiếp lên container nền như AWT, mà bắt buộc phải add thông qua tấm nền nội dung `content-pane` (`getContentPane()`).
+
+
+* 
+The class name of components in AWT and corresponding class's name in Swing : Các component của Swing hầu hết đều được bổ sung tiền tố chữ "J" vào trước tên gọi gốc bên lớp AWT. Ví dụ: `Label` biến thành `JLabel` , `TextField` biến thành `JTextField` , và `Button` tương ứng với `JButton`.
+
+
+
+---
+
+2. Câu hỏi mục 14: Update the Aims class (Trang 33) 
+
+Đề bài đưa ra một câu hỏi trực diện khi bạn tiến hành cấu hình cho phương thức `play()` ném ngoại lệ:
+
+* 
+**"What happens when you don't update for them to catch?"** (Điều gì xảy ra nếu bạn không cập nhật mã nguồn để bắt/xử lý ngoại lệ?) : Vì lớp ngoại lệ `PlayerException` của chúng ta được thiết lập kế thừa từ `java.lang.Exception` nên nó được coi là một **checked exception**. Quy tắc nghiêm ngặt của ngôn ngữ Java bắt buộc các hàm gọi phương thức này (như hàm `main` của lớp `Aims`) phải bao bọc nó trong khối lệnh `try-catch` hoặc tiếp tục ném đi bằng từ khóa `throws`. Nếu bạn không cập nhật để bắt (catch) ngoại lệ này, trình biên dịch sẽ báo lỗi cú pháp ngay lập tức (**Compile-time error**) và hệ thống sẽ từ chối biên dịch chương trình.

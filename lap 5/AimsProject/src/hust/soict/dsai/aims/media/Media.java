@@ -33,4 +33,29 @@ public abstract class Media {
         Media media = (Media) obj;
         return title != null && title.equals(media.getTitle());
     }
+    @Override
+public boolean equals(Object obj) {
+    // 1. Kiểm tra nếu cùng trỏ vào một vùng nhớ thì chắc chắn bằng nhau
+    if (this == obj) {
+        return true;
+    }
+    
+    // 2. Chống lỗi NullPointerException nếu đối tượng truyền vào bị rỗng 
+    if (obj == null) {
+        return false;
+    }
+    
+    // 3. Chống lỗi ClassCastException bằng toán tử instanceof [cite: 1507, 1508]
+    if (!(obj instanceof Media)) {
+        return false;
+    }
+    
+    // 4. Ép kiểu và thực hiện so sánh theo tiêu đề (Title) 
+    Media other = (Media) obj;
+    if (this.title == null) {
+        return other.title == null;
+    }
+    
+    return this.title.equalsIgnoreCase(other.title);
+}
 }
